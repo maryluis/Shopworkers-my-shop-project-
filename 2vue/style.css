@@ -1,0 +1,80 @@
+body {
+    background-color: rgb(19, 12, 82);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.vue-Wrapper {
+    width: 80%;
+    display: flex;
+    background-color: rgb(222, 221, 235);
+    flex-direction: column;
+    border-radius: 10%;
+    padding: 15px;
+    height: 350px;
+    justify-content: space-between;
+}
+
+.numberWrapper ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0%;
+}
+.numberWrapper li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.numberWrapper li span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.green {
+    background-color: rgb(21, 129, 97);
+    color: black;
+}
+.chosen {
+    background-color: rgb(21, 129, 97);
+    color: rgb(222, 221, 235);
+}
+
+.grey {
+    background-color: rgb(189, 196, 191);
+    color: black;
+}
+.buttonWrapper {
+    font-size: 15px;
+}
+.buttonWrapper .main button {
+    height: 30px;
+    padding: 5px;
+    width: 100px;
+    margin: 5px;
+    border-radius: 25%;
+}
+.disabled {
+    color : rgb(189, 196, 191);
+    border-color: rgb(189, 196, 191);
+
+}
+.disabledFalse {
+    color : rgb(21, 129, 97);
+    border-color: rgb(21, 129, 97);
+}
+.finished {
+    height: 30px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 25%;
+    color : rgb(21, 129, 97);
+    border-color: rgb(21, 129, 97);
+}
