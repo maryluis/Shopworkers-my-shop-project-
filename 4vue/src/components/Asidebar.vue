@@ -9,7 +9,7 @@
                 <option>Аватар</option>
             </select>
             <textarea v-model="text"/>
-            <button type="submit" :disabled="text.length < 4" @click='createComponent'>Добавить</button>
+            <button type="submit" :disabled="TextLength" @click='createComponent'>Добавить</button>
         </div>
     </div>
 </template>
@@ -36,6 +36,15 @@ export default {
 
             this.text = "";
 
+        }
+    },
+    computed: {
+        TextLength() {
+            if(this.text.length < 3) {
+                return true
+            } else {
+                return false
+            } 
         }
     }
 
