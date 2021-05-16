@@ -13,16 +13,12 @@
             <text-input v-if="component.type ==='Текст'" :text="component.text"/>
             <avatar-input v-if="component.type ==='Аватар'" :ImgUrl="component.text"/>
           </div>
-
-          
-          
-          
         </div>
       </div>
     </div>
-      <div class="commentsInner">
-    <add-comment @Add="AddComment"></add-comment>
-    <comments-inner :comments = "comments" :Delete = "RemoveComment"></comments-inner>
+    <div class="commentsInner">
+      <add-comment @Add="AddComment"></add-comment>
+      <comments-inner :comments = "comments" :Delete = "RemoveComment" :isLoader = "loadComments"></comments-inner>
   </div>
   </div>
 
@@ -38,9 +34,6 @@ import AddComment from "./components/AddComment"
 import CommentsInner from "./components/CommentsInner"
 import axios from "axios"
 
-
-
-
 export default {
   name: 'App',
   data() {
@@ -50,7 +43,7 @@ export default {
         NewComponents: [],
         url: "https://comments-vue-default-rtdb.firebaseio.com/.json",
         comments: null,
-
+        loadComments: false,
       }
     )
   },
@@ -61,13 +54,14 @@ export default {
 
     },
     async GetComments() {
-
+      this.loadComments = true;
       const comments = await axios.get(this.url);
-      this.comments = comments.data
+      this.comments = comments.data;
+      this.loadComments = false;
 
     },
     async AddComment(New) {
-      console.log(New)
+
       await fetch(this.url, {
           method: 'POST',
           headers: {
@@ -80,10 +74,6 @@ export default {
               }
           )
       });
-
-    
-
-
 
       await this.GetComments();
     },
@@ -107,20 +97,24 @@ export default {
     AvatarInput,
     AddComment,
     CommentsInner
-
-
   }
 }
 </script>
 
 <style>
+* {
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 12px;
+}
 body {
   background-color:rgb(83, 81, 97);
 }
 .main {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -129,6 +123,9 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+h2 {
+    font-weight: 600;
 }
 .wrapper {
   display: flex;
@@ -151,8 +148,8 @@ body {
   background-color: rgb(223, 221, 233);
   padding: 20px;
   border-radius: 5%;
+  width: 98%;
   margin: 10px;
-  width: 70%
 }
 .aside {
 
@@ -163,13 +160,7 @@ body {
 
   
 }
-.componentsInner {
 
-}
-.commentsInner {
-    width: 90%;
-
-}
 .aside select {
   margin-bottom: 5px;
 }
@@ -181,7 +172,10 @@ body {
     flex-wrap: wrap;
   }
   .aside {
-    width: 70%;
+    width: 100%;
+  }
+  .card {
+    width: 100%;
   }
 }
 </style>

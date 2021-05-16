@@ -1,26 +1,14 @@
 <template>
-    
     <input placeholder="Введите имя" type="text" v-model="name"/>
 
     <textarea placeholder="Комментарий" name="" id="" cols="30" rows="10" v-model="comment"></textarea>
 
-    <button :disabled='TextAndName' @click="AddNewComment(name, comment)">Добавить комментарий</button>
-
-
-
-
-
+    <button :disabled='IsTextAndNameFiled' @click="AddNewComment(name, comment)">Добавить комментарий</button>
 </template>
 
 <script>
-
-
 export default {
     name: "AddComments",
-    emits: "Add",
-    props: {
-        AddComment: Function
-    },
     data() {
         return(
             {
@@ -32,7 +20,6 @@ export default {
     },
     methods: {
         AddNewComment() {
-            
             let New = {}
             New.newName = this.name;
             New.newComment = this.comment;
@@ -43,16 +30,10 @@ export default {
         }
     },
     computed: {
-        TextAndName() {
-            if(this.name && this.comment) {
-                return false
-            } else {
-                return true
-            } 
+        IsTextAndNameFiled() {
+            return !(this.name && this.comment);
         }
     }
-    
-
 }
 </script>
 

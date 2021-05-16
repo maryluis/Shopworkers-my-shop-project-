@@ -2,8 +2,6 @@
 
   <img :src='ImgUrl'/>
 
-
-
 </template>
 
 <script>

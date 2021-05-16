@@ -2,7 +2,6 @@
   <p>
       {{text}}
   </p>
-
 </template>
 
 <script>

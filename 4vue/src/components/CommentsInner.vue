@@ -1,28 +1,31 @@
 <template>
     
-    <div v-if="comments" class="commentsWrapper" >
+    <div v-if="comments && !isLoader" class="commentsWrapper" >
         <div class="oneComment" v-for="(comment, id) in comments" :key="id">
             <div>
                 <h5>{{comment.name}}</h5>
                 <p>{{comment.comment}}</p>
-
             </div>
-            <button @click="Delete(id)"> Удалить</button>
+            <button @click="Delete(id)">Удалить</button>
         </div>
     </div>
-
+    <div v-else-if="!comments && !isLoader" class="commentsWrapper">
+        <h2>Комментариев пока нет</h2>
+    </div>
+    <div v-else>
+        <div class="spinner-grow text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 </template>
-
 <script>
-
-
 export default {
     name: "Comments",
     props: {
         comments: Object,
-        Delete: Function
+        Delete: Function,
+        isLoader: Boolean,
     },
-
 
 }
 </script>
@@ -47,6 +50,8 @@ export default {
 
     }
     .oneComment h5 {
+        font-weight: 600 !important;
+        font-size: 14px;
         text-align: start;
         margin: 0;
     }
